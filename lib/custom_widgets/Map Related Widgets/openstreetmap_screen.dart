@@ -53,6 +53,7 @@ class OpenstreetmapScreen extends StatefulWidget {
     required this.onPublicTransportRouteChanged,
     this.selectionMode = PointSelectionMode.none,
     required this.searchStream,
+    required ptRouteModel,
   });
 
   @override

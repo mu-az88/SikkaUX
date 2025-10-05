@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:public_transportation/Navgation%20Bar/favorites_nav.dart';
 import 'package:public_transportation/Navgation%20Bar/home_nav.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedindex = 0;
   final List<Widget> _pages = [
     HomeNav(),
-    Center(child: Text('Search Screen')),
+    Center(child: FavoritesNav()),
     Center(child: Text('Settings Screen')),
     Center(child: Text('Profile Screen')),
   ];
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         onTap: _navigateBottomBar,
         currentIndex: _selectedindex,
         type: BottomNavigationBarType.fixed,

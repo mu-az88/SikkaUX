@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:public_transportation/screens/unified_screen.dart';
+
+import 'package:public_transportation/screens/home_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -91,8 +92,7 @@ class _LandingScreenState extends State<LandingScreen>
     if (mounted) {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              UnifiedNavigationScreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
           transitionDuration: const Duration(milliseconds: 600),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(

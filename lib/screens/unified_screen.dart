@@ -1653,6 +1653,7 @@ class _UnifiedNavigationScreenState extends State<UnifiedNavigationScreen> {
             onPublicTransportRouteChanged: _onPublicTransportRouteChanged,
             selectionMode: _getMapSelectionMode(),
             searchStream: _searchController.stream,
+            ptRouteModel: null,
           ),
 
           // Floating icons
