@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:public_transportation/custom_widgets/Sliding%20Up%20Panel/navigation_panel_widget.dart';
-import 'package:public_transportation/custom_widgets/Map%20Related%20Widgets/openstreetmap_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:public_transportation/custom_widgets/Sliding%20Up%20Panel/panel_widget.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});

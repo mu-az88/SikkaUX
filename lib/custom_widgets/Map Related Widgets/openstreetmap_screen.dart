@@ -10,7 +10,6 @@ import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:public_transportation/custom_widgets/Map%20Related%20Widgets/pt_route_model.dart';
 import 'package:public_transportation/custom_widgets/Map%20Related%20Widgets/pt_route_service.dart';
-import 'package:public_transportation/screens/unified_screen.dart';
 
 // A simple data class to hold both coordinates and a readable address.
 class PointData {
@@ -27,11 +26,7 @@ class TransitStop {
   final String name;
   final String? code;
 
-  TransitStop({
-    required this.geometry,
-    required this.name,
-    this.code,
-  });
+  TransitStop({required this.geometry, required this.name, this.code});
 }
 
 class OpenstreetmapScreen extends StatefulWidget {
@@ -103,7 +98,7 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
     if (!status.isGranted) {
       setState(() => isLoading = false);
       const fallbackPoint = LatLng(51.5074, -0.1278);
-      _updateOrigin(fallbackPoint, "London");
+      _updateOrigin(fallbackPoint, "Sudan");
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
@@ -116,8 +111,10 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
     try {
       final locationData = await _location.getLocation();
       if (locationData.latitude != null && locationData.longitude != null) {
-        final initialPoint =
-            LatLng(locationData.latitude!, locationData.longitude!);
+        final initialPoint = LatLng(
+          locationData.latitude!,
+          locationData.longitude!,
+        );
         _updateOrigin(initialPoint);
 
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -178,10 +175,13 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
   // Converts coordinates (LatLng) to a human-readable address.
   Future<String> _reverseGeocode(LatLng point) async {
     final url = Uri.parse(
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=${point.latitude}&lon=${point.longitude}');
+      'https://nominatim.openstreetmap.org/reverse?format=json&lat=${point.latitude}&lon=${point.longitude}',
+    );
     try {
-      final response =
-          await http.get(url, headers: {'User-Agent': 'AppName/1.0'});
+      final response = await http.get(
+        url,
+        headers: {'User-Agent': 'AppName/1.0'},
+      );
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         return data['display_name'] ?? 'Unknown Location';
@@ -197,10 +197,13 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
     if (isRouteFetching) return; // Prevent search during route fetching
 
     final url = Uri.parse(
-        "https://nominatim.openstreetmap.org/search?q=$location&format=json&limit=1");
+      "https://nominatim.openstreetmap.org/search?q=$location&format=json&limit=1",
+    );
     try {
-      final response =
-          await http.get(url, headers: {'User-Agent': 'AppName/1.0'});
+      final response = await http.get(
+        url,
+        headers: {'User-Agent': 'AppName/1.0'},
+      );
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data.isNotEmpty) {
@@ -239,17 +242,19 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
       // Add a timeout for the API call
       final route = await _service
           .getRoute(
-        origin: _origin!,
-        destination: _destination!,
-        departureTime: DateTime.now(),
-      )
+            origin: _origin!,
+            destination: _destination!,
+            departureTime: DateTime.now(),
+          )
           .timeout(
-        const Duration(seconds: 30),
-        onTimeout: () {
-          throw TimeoutException(
-              'Request timed out', const Duration(seconds: 30));
-        },
-      );
+            const Duration(seconds: 30),
+            onTimeout: () {
+              throw TimeoutException(
+                'Request timed out',
+                const Duration(seconds: 30),
+              );
+            },
+          );
 
       if (route != null) {
         setState(() {
@@ -270,7 +275,8 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
         isRouteFetching = false;
       });
       _showMessage(
-          "Request timed out. The server might be starting up. Please try again in a moment.");
+        "Request timed out. The server might be starting up. Please try again in a moment.",
+      );
     } on http.ClientException catch (e) {
       setState(() {
         isRouteFetching = false;
@@ -279,7 +285,8 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
           e.message.contains('No address associated') ||
           e.message.contains('Network is unreachable')) {
         _showMessage(
-            "Server is not available. It might be starting up. Please wait a moment and try again.");
+          "Server is not available. It might be starting up. Please wait a moment and try again.",
+        );
       } else {
         _showMessage("Network error: ${e.message}");
       }
@@ -331,7 +338,8 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
             isRouteFetching = false;
           });
           _showMessage(
-              "Server is still starting up. Please try again in a few moments.");
+            "Server is still starting up. Please try again in a few moments.",
+          );
         }
       } else {
         _showMessage("Error fetching route: $e");
@@ -379,10 +387,9 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
   // Utility to show a SnackBar message.
   void _showMessage(String message) {
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 4),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message), duration: const Duration(seconds: 4)),
+      );
     }
   }
 
@@ -436,20 +443,16 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
 
         polylines.add(
           Polyline(
-              points: leg.geometry,
-              strokeWidth: strokeWidth,
-              color: legColor,
-              pattern:
-                  isDotted ? StrokePattern.dotted() : StrokePattern.solid()),
+            points: leg.geometry,
+            strokeWidth: strokeWidth,
+            color: legColor,
+            pattern: isDotted ? StrokePattern.dotted() : StrokePattern.solid(),
+          ),
         );
       }
     } else if (_route.isNotEmpty) {
       polylines.add(
-        Polyline(
-          points: _route,
-          strokeWidth: 5,
-          color: Colors.blueAccent,
-        ),
+        Polyline(points: _route, strokeWidth: 5, color: Colors.blueAccent),
       );
     }
 
@@ -546,7 +549,7 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
                   interactionOptions: InteractionOptions(
                     flags: isRouteFetching
                         ? InteractiveFlag
-                            .none // Disable all interactions during route fetching
+                              .none // Disable all interactions during route fetching
                         : InteractiveFlag.all,
                   ),
                   onPositionChanged: (MapCamera pos, bool hasGesture) {
@@ -569,10 +572,7 @@ class _OpenstreetmapScreenState extends State<OpenstreetmapScreen> {
                     alignDirectionOnUpdate: AlignOnUpdate.never,
                     style: const LocationMarkerStyle(
                       marker: DefaultLocationMarker(
-                        child: Icon(
-                          Icons.navigation,
-                          color: Colors.white,
-                        ),
+                        child: Icon(Icons.navigation, color: Colors.white),
                       ),
                       markerSize: Size(40, 40),
                       markerDirection: MarkerDirection.heading,

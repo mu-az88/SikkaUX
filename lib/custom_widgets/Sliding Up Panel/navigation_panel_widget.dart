@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:public_transportation/custom_widgets/Sliding%20Up%20Panel/drag_handle.dart';
-import 'package:public_transportation/custom_widgets/Sliding%20Up%20Panel/fiters_buttons.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:public_transportation/custom_widgets/Sliding%20Up%20Panel/routes_tiles.dart';
 
 // ignore: must_be_immutable
 class NavigationPanelWidget extends StatefulWidget {
