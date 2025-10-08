@@ -14,12 +14,12 @@ class FavoritesNav extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
         ),
         body: Container(
-          margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
           child: Column(
             children: [
               SizedBox(height: 94),
               Row(
                 children: [
+                  FavoritesItem(),
                   FavoritesItem(),
                   FavoritesItem(),
                 ],
@@ -39,9 +39,31 @@ class FavoritesItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.deepOrange,
       ),
-      margin: EdgeInsets.fromLTRB(20, 30, 0, 0),
+      margin: EdgeInsets.fromLTRB(15, 30, 0, 0),
       width: 110,
       height: 110,
     );
+  }
+}
+
+class appButton extends StatelessWidget {
+  final Color backgroundColor;
+  final Color textColor;
+  final Color borderColor;
+  final String text;
+  final IconData? icon;
+  double size;
+  appButton(
+      {super.key,
+      required this.backgroundColor,
+      required this.textColor,
+      required this.borderColor,
+      required this.text,
+      required this.size,
+      this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

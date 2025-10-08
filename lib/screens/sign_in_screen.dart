@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:public_transportation/screens/home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -221,7 +222,9 @@ Button with dropshadow
                     ),
                     elevation: 0, // Remove default shadow
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
                   child: const Text(
                     'Login',
                     style: TextStyle(

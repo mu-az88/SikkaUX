@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:public_transportation/screens/home_screen.dart';
 import 'package:public_transportation/screens/landing_screen.dart';
 
 void main() {
@@ -11,6 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/home': (context) => HomeScreen(),
+      },
       home: const LandingScreen(), // Start with the animated landing screen
       debugShowCheckedModeBanner: false, // Optional: removes debug banner
     );
