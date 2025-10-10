@@ -68,6 +68,9 @@ class _PanelWidgetState extends State<PanelWidget> {
 
               */
                 TextField(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/search');
+                  },
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,

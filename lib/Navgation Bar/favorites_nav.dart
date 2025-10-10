@@ -7,70 +7,62 @@ class FavoritesNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 229, 243, 255),
-        appBar: AppBar(
-          title: Center(
-              child: Text('Favorites', style: TextStyle(color: Colors.black))),
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
-        body: Container(
+        body: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 94),
-              Row(
-                children: [
-                  appButton(
-                    backgroundColor: Colors.white,
-                    textColor: Color.fromARGB(255, 0, 59, 115),
-                    icon: Icons.home_rounded,
-                    text: 'Home',
-                    size: 110,
-                  ),
-                  appButton(
-                    backgroundColor: Colors.white,
-                    textColor: Color.fromARGB(255, 0, 59, 115),
-                    icon: Icons.work,
-                    text: 'Work',
-                    size: 110,
-                  ),
-                  appButton(
-                    backgroundColor: Colors.white,
-                    textColor: Color.fromARGB(255, 0, 59, 115),
-                    icon: Icons.local_gas_station_rounded,
-                    text: 'Station',
-                    size: 110,
-                  ),
-                ],
+              SizedBox(height: 10),
+              Text(
+                'Favorites',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-              Row(
-                children: [
-                  appButton(
-                      backgroundColor: Colors.white,
-                      textColor: Color.fromARGB(255, 255, 167, 38),
-                      icon: Icons.add,
-                      text: 'Add',
-                      size: 110),
-                ],
+              Container(
+                child: Column(
+                  children: [
+                    SizedBox(height: 84),
+                    Row(
+                      children: [
+                        appButton(
+                          backgroundColor: Colors.white,
+                          textColor: Color.fromARGB(255, 0, 59, 115),
+                          icon: Icons.home_rounded,
+                          text: 'Home',
+                          size: 110,
+                        ),
+                        appButton(
+                          backgroundColor: Colors.white,
+                          textColor: Color.fromARGB(255, 0, 59, 115),
+                          icon: Icons.work,
+                          text: 'Work',
+                          size: 110,
+                        ),
+                        appButton(
+                          backgroundColor: Colors.white,
+                          textColor: Color.fromARGB(255, 0, 59, 115),
+                          icon: Icons.local_gas_station_rounded,
+                          text: 'Station',
+                          size: 110,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        appButton(
+                            backgroundColor: Colors.white,
+                            textColor: Color.fromARGB(255, 255, 167, 38),
+                            icon: Icons.add_rounded,
+                            text: 'Add',
+                            size: 110),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ));
-  }
-}
-
-class FavoritesItem extends StatelessWidget {
-  const FavoritesItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.deepOrange,
-      ),
-      margin: EdgeInsets.fromLTRB(15, 30, 0, 0),
-      width: 110,
-      height: 110,
-    );
   }
 }
 
@@ -93,7 +85,7 @@ class appButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(15, 30, 0, 0),
+      margin: EdgeInsets.fromLTRB(15, 20, 0, 0),
       width: size,
       height: size,
       child: Column(
@@ -108,7 +100,10 @@ class appButton extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Center(
-            child: Text(text),
+            child: Text(
+              text,
+              style: TextStyle(color: textColor),
+            ),
           ),
         ],
       ),
