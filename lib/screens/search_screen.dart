@@ -66,6 +66,44 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: Color.fromARGB(255, 0, 59, 115),
               ),
             ),
+            SizedBox(height: 41),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Search History',
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(20, 25, 20, 100),
+              height: 350,
+              width: double.infinity,
+              child: Column(
+                children: [
+                  PrevSearch(
+                    city: 'Khartoum',
+                    location: 'UofK',
+                  ),
+                  PrevSearch(
+                    city: 'Khartoum',
+                    location: 'Jabra',
+                  ),
+                  PrevSearch(
+                    city: 'Um Durman',
+                    location: 'Murabbaat',
+                  ),
+                  PrevSearch(
+                    city: 'Um Durman',
+                    location: 'Thawra',
+                  ),
+                  PrevSearch(
+                    city: 'Sharq Alneel',
+                    location: 'Haj Yousif',
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -110,6 +148,59 @@ class _SearchFieldState extends State<SearchField> {
           borderSide: BorderSide(color: Color.fromARGB(255, 0, 59, 115)),
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      ),
+    );
+  }
+}
+
+class PrevSearch extends StatelessWidget {
+  final String city;
+  final String location;
+  const PrevSearch({super.key, required this.city, required this.location});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Your action here
+      },
+      child: Container(
+        alignment: Alignment.centerLeft,
+        width: double.infinity,
+        height: 60,
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colors.grey, width: 1),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.history,
+              size: 28,
+              color: Colors.grey,
+            ),
+            SizedBox(width: 15),
+            Column(
+              children: [
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  location,
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  city,
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
