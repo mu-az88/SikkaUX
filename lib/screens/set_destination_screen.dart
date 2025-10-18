@@ -24,15 +24,18 @@ class RouteSelectionScreen extends StatelessWidget {
       backgroundColor: const Color(0xffdceeff),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildDestinationInputs(),
               const SizedBox(height: 20),
-              const Text(
-                'Routes',
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
+              Container(
+                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                child: const Text(
+                  'Routes',
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
+                ),
               ),
               const SizedBox(height: 10),
               Expanded(child: _buildRouteList()),
@@ -63,7 +66,7 @@ class RouteSelectionScreen extends StatelessWidget {
         ),
         const Positioned(
           top: 0,
-          left: -10,
+          left: -7,
           child: _BackArrowButton(),
         ),
         Positioned(
@@ -136,7 +139,7 @@ class RouteSelectionScreen extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (_, index) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
+          padding: const EdgeInsets.fromLTRB(16, 0, 0, 12),
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -214,7 +217,7 @@ class _BackArrowButton extends StatelessWidget {
       icon:
           const Icon(Icons.arrow_back, color: Color.fromARGB(255, 0, 59, 115)),
       onPressed: () => Navigator.pop(context),
-      splashRadius: 24, // Optional: smaller tap effect
+      splashRadius: 18, // Optional: smaller tap effect
     );
   }
 }

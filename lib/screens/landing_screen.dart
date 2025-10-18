@@ -138,7 +138,7 @@ class _LandingScreenState extends State<LandingScreen>
                 // Background Image with fade in
                 Positioned.fill(
                   child: Image.asset(
-                    'assets/SIKKA.png',
+                    'assets/publictransport.png',
                     fit: BoxFit.cover,
                   ),
                 ),

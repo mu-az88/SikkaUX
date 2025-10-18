@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:public_transportation/screens/home_screen.dart';
 import 'package:public_transportation/screens/landing_screen.dart';
 import 'package:public_transportation/screens/search_screen.dart';
+import 'package:public_transportation/screens/set_destination_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => HomeScreen(),
         '/search': (context) => SearchScreen(),
+        '/setDestination': (context) => RouteSelectionScreen(),
       },
       home: const LandingScreen(), // Start with the animated landing screen
       debugShowCheckedModeBanner: false, // Optional: removes debug banner

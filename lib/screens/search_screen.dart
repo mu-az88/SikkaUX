@@ -11,6 +11,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color.fromARGB(255, 229, 243, 255),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 229, 243, 255),
@@ -162,7 +163,7 @@ class PrevSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Your action here
+        Navigator.of(context).pushNamed('/setDestination');
       },
       child: Container(
         alignment: Alignment.centerLeft,
